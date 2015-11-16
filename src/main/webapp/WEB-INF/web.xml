@@ -7,7 +7,7 @@
 
 	<servlet>
 		<servlet-name>main</servlet-name>
-		<servlet-class>com.gihub.leonardocouto.s3listener.Main</servlet-class>
+		<servlet-class>com.github.leonardocouto.s3listener.Main</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
