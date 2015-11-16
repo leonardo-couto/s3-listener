@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+    <Environment name="properties-path" value="${catalina.base}/conf/s3-listener.properties" type="java.lang.String"/>
+</Context>

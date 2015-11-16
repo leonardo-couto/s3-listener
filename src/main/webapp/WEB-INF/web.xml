@@ -1,0 +1,23 @@
+<web-app version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>S3 File Listener</display-name>
+
+	<servlet>
+		<servlet-name>main</servlet-name>
+		<servlet-class>com.gihub.leonardocouto.s3listener.Main</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>main</servlet-name>
+		<url-pattern>/file</url-pattern>
+		<http-method>POST</http-method>
+	</servlet-mapping>
+	
+	<listener>
+		<listener-class>com.github.leonardocouto.s3listener.context.Context</listener-class>
+	</listener>
+
+</web-app>
