@@ -10,6 +10,9 @@ import javax.naming.NamingException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import com.github.leonardocouto.s3listener.CopyFile;
+import com.github.leonardocouto.s3listener.EventListener;
+
 public class Context implements ServletContextListener {
 
     private static Context context;
@@ -21,6 +24,8 @@ public class Context implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+    	EventListener.register(CopyFile.class);
+    	
         try {
         	String path = (String) new InitialContext().lookup("java:comp/env/properties-path");
             InputStream stream = new FileInputStream(path);
