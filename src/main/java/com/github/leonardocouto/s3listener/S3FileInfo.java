@@ -41,5 +41,9 @@ public class S3FileInfo {
 	public Map<String, String> getOptions() {
 		return this.options == null ? new HashMap<>() : this.options;
 	}
+
+	public void setOptions(Map<String, String> options) {
+		this.options = options;
+	}
 	
 }
