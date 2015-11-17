@@ -1,5 +1,7 @@
 package com.github.leonardocouto.s3listener;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +13,9 @@ public class S3FileInfo {
 	
 	@JSON
 	private String path;
+	
+	@JSON
+	private Map<String, String> options;
 	
 	public String getKey() {
 		Matcher matcher = S3_PATTERN.matcher(this.path);
@@ -31,6 +36,10 @@ public class S3FileInfo {
 	public boolean isValid() {
 		Matcher matcher = S3_PATTERN.matcher(this.path);
 		return matcher.matches();
+	}
+	
+	public Map<String, String> getOptions() {
+		return this.options == null ? new HashMap<>() : this.options;
 	}
 	
 }

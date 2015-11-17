@@ -2,6 +2,7 @@ package com.github.leonardocouto.s3listener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.amazonaws.services.s3.model.S3Object;
 
@@ -13,8 +14,8 @@ public class EventListener {
 		listeners.add(listener);
 	}
 	
-	public static void notify(S3Object file) {
-		listeners.stream().map(Reflection::newInstance).forEach((listener) -> listener.run(file));
+	public static void notify(S3Object file, Map<String, String> options) {
+		listeners.stream().map(Reflection::newInstance).forEach((listener) -> listener.run(file, options));
 	}
 	
 	private static class Reflection {

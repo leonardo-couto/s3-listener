@@ -1,6 +1,7 @@
 package com.github.leonardocouto.s3listener;
 
 import java.io.File;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,13 +14,14 @@ public class CopyFile implements Listener {
 	private static final Pattern FILE_NAME = Pattern.compile("((.+)\\/)?(.+)$");
 
 	@Override
-	public void run(S3Object object) {
+	public void run(S3Object object, Map<String, String> options) {
 		String destinationPath = Context.destinationPath();
 		
 		String key = object.getKey();
-		String fileName = fileName(key);
+		String targetName = options.get("targetName");
+		String fileName = targetName == null ? fileName(key) : targetName;
 		
-		File file = new File(destinationPath, fileName);
+		File file = new File(destinationPath, sanitize(fileName));
 		ServiceUtils.downloadObjectToFile(object, file, true, false);
 		
 	}
@@ -29,5 +31,9 @@ public class CopyFile implements Listener {
 		matcher.matches();
 		return matcher.group(3);
 	}
-
+	
+	private static String sanitize(String fileName) {
+		return fileName.replace("\\", "").replace("/", "");
+	}
+	
 }

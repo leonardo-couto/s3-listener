@@ -33,7 +33,7 @@ public class Main extends HttpServlet {
 		}
 		
 		AmazonS3Client s3Client = new AmazonS3Client();
-		EventListener.notify(s3Client.getObject(fileInfo.getBucket(), fileInfo.getKey()));
+		EventListener.notify(s3Client.getObject(fileInfo.getBucket(), fileInfo.getKey()), fileInfo.getOptions());
 	}
 	
 	private void error(HttpServletResponse resp, int status, String msg) throws IOException {
